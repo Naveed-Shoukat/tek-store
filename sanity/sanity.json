@@ -1,11 +1,11 @@
 {
   "root": true,
-  "project": {
-    "name": "tek-store"
-  },
   "api": {
-    "projectId": "kfruazkd",
+    "projectId": "xttkoa0o",
     "dataset": "production"
+  },
+  "project": {
+    "name": "tek_store"
   },
   "plugins": [
     "@sanity/base",
@@ -15,9 +15,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
