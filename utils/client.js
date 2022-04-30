@@ -1,7 +1,7 @@
-import client from '@sanity/client';
+import sanityClient from '@sanity/client';
 import config from './config';
 
-export default client({
+const client = sanityClient({
   projectId: config.projectId,
   dataset: config.dataset,
   apiVersion: '2022-04-29',
@@ -10,3 +10,5 @@ export default client({
   useCdn: true,
   ignoreBrowserTokenWarning: true,
 });
+
+export default client;

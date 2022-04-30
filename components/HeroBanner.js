@@ -12,6 +12,7 @@ import {
 import NextLink from 'next/link';
 import { urlFor } from '../utils/image';
 import { lineHeight } from '@mui/system';
+import classes from '../utils/classes';
 
 export default function HeroBanner({ banner }) {
   const bannerImage = banner.image;
@@ -21,49 +22,26 @@ export default function HeroBanner({ banner }) {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="350"
+            height="400"
             image={urlFor(bannerImage)}
             title={banner.name}
           ></CardMedia>
 
-          <CardContent
-            style={{
-              position: 'absolute',
-              color: '#203040',
-              top: 10,
-              left: '40%',
-              transform: 'translateX(-50%)',
-            }}
-          >
-            <Typography
-              className="h1"
-              variant="h1"
-              style={{ fontSize: '2.5rem' }}
-            >
+          <CardContent sx={classes.bannerCardContent}>
+            <Typography className="h1" variant="h1">
               {banner.product}
             </Typography>
 
-            <Typography
-              style={{
-                fontSize: '1.4rem',
-                fontWeight: 'bolder',
-                lineHeight: '2',
-              }}
-            >
+            {/* <Typography>
               {banner.midText} <br /> {banner.desc} <br /> {banner.discount}
-            </Typography>
+            </Typography> */}
             {/* <Typography>{banner.smallText}</Typography> */}
-            {/* <Typography>{banner.desc}</Typography> */}
-            {/* <Typography>{banner.discount}</Typography> */}
-            {/* <Typography>{banner.saleTime}</Typography> */}
+            {/* <Typography>{banner.midText}</Typography> */}
+            <Typography>{banner.desc}</Typography>
+            <Typography>{banner.discount}</Typography>
+            <Typography>{banner.saleTime}</Typography>
             <br />
-            <Typography
-              className="h1"
-              variant="h1"
-              style={{ fontSize: '1.8rem', fontWeight: 'bolder' }}
-            >
-              {banner.largeText}
-            </Typography>
+            <Typography>{banner.largeText}</Typography>
           </CardContent>
         </CardActionArea>
       </NextLink>

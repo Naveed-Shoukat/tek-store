@@ -10,8 +10,8 @@ import {
 } from '@mui/material';
 import Head from 'next/head';
 import NextLink from 'next/link';
-import classes from '../styles/classes';
-import LayoutTheme from '../styles/LayoutTheme';
+import classes from '../utils/classes';
+import LayoutTheme from '../utils/LayoutTheme';
 
 export default function Layout({ title, description, children }) {
   return (
