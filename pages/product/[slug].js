@@ -13,14 +13,25 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import classes from '../../utils/classes';
 import client from '../../utils/client';
-import { urlFor } from '../../utils/image';
+import { urlFor, urlForThumbnail } from '../../utils/image';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import { Store } from '../../utils/Store';
+import { useRouter } from 'next/router';
 
 export default function ProductScreen(props) {
+  const router = useRouter();
   const { slug } = props;
+  const {
+    state: { cart },
+    dispatch,
+  } = useContext(Store);
+  const { enqueueSnackbar } = useSnackbar();
   const [state, setState] = useState({
     product: null,
     loading: true,
@@ -44,6 +55,32 @@ export default function ProductScreen(props) {
     fetchData();
   }, []);
 
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      enqueueSnackbar('Sorry. Product is out of stock', { variant: 'error' });
+      return;
+    }
+    dispatch({
+      type: 'CART_ADD_ITEM',
+      payload: {
+        _key: product._id,
+        name: product.name,
+        countInStock: product.countInStock,
+        slug: product.slug.current,
+        price: product.price,
+        image: urlForThumbnail(product.image),
+        quantity,
+      },
+    });
+    enqueueSnackbar(`${product.name} added to the cart`, {
+      variant: 'success',
+    });
+    router.push('/cart');
+  };
+
   return (
     <Layout title={product?.title}>
       {loading ? (
@@ -55,7 +92,10 @@ export default function ProductScreen(props) {
           <Box sx={classes.section}>
             <NextLink href="/" passHref>
               <Link>
-                <Typography sx={classes.goBack}>Go Back</Typography>
+                <Button variant="contained" style={{ borderRadius: 15 }}>
+                  <ArrowBackIcon />
+                  &nbsp; Go Back &nbsp; &nbsp;
+                </Button>
               </Link>
             </NextLink>
           </Box>
@@ -98,7 +138,7 @@ export default function ProductScreen(props) {
                         <Typography>Price</Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Typography>${product.price}</Typography>
+                        <Typography>TL: {product.price}</Typography>
                       </Grid>
                     </Grid>
                   </ListItem>
@@ -117,7 +157,11 @@ export default function ProductScreen(props) {
                     </Grid>
                   </ListItem>
                   <ListItem>
-                    <Button fullWidth variant="contained">
+                    <Button
+                      onClick={addToCartHandler}
+                      fullWidth
+                      variant="contained"
+                    >
                       Add to cart
                     </Button>
                   </ListItem>

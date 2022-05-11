@@ -21,7 +21,7 @@ export default function ProductItem({ product }) {
         <CardActionArea>
           <CardMedia
             component="img"
-            image={urlForThumbnail(productImage)}
+            image={urlForThumbnail(product.image)}
             title={product.name}
           ></CardMedia>
           <CardContent>
@@ -34,7 +34,7 @@ export default function ProductItem({ product }) {
         </CardActionArea>
       </NextLink>
       <CardActions>
-        <Typography>TL:{product.price}</Typography>
+        <Typography>TL: {product.price}</Typography>
         <Button size="small" color="primary">
           Add to cart
         </Button>

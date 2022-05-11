@@ -12,7 +12,7 @@ const classes = {
     borderRadius: '7px',
     fontSize: '1.2rem',
     fontWeight: 'bold',
-    border: '2px solid green',
+    border: '2px solid',
     '&:hover': {
       backgroundColor: '#203040',
       color: '#ffffff',
