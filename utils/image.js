@@ -7,7 +7,8 @@ function urlForThumbnail(source) {
 }
 
 function urlFor(source) {
-  return ImageUrlBuilder(client).image(source).width(410)?.url();
+  // const singleImgSource = source[0];
+  return ImageUrlBuilder(client).image(source).width(410).url();
 }
 
 export { urlForThumbnail, urlFor };

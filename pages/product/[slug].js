@@ -5,6 +5,8 @@ import {
   Card,
   CircularProgress,
   Grid,
+  ImageList,
+  ImageListItem,
   Link,
   List,
   ListItem,
@@ -99,15 +101,28 @@ export default function ProductScreen(props) {
               </Link>
             </NextLink>
           </Box>
-          <Grid container spacing={1}>
+          <Grid container spacing={2}>
             <Grid item md={6} xs={12}>
               <Image
-                src={urlFor(product?.image[0])}
+                src={urlFor(product.image[0])}
                 alt={product.name}
                 layout="responsive"
                 width={640}
                 height={640}
               />
+              {/* Need to display all thumb nails for the current product */}
+              <ImageList sx={{ width: 300, height: 75 }} cols={4}>
+                {product.image.map((item, ind) => (
+                  <ImageListItem key={urlFor(product.image[ind])}>
+                    <Image
+                      src={urlFor(product.image[ind])}
+                      alt=""
+                      width={75}
+                      height={75}
+                    ></Image>
+                  </ImageListItem>
+                ))}
+              </ImageList>
             </Grid>
             <Grid item md={3} xs={12}>
               <List>
