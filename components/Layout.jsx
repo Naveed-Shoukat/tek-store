@@ -48,7 +48,7 @@ export default function Layout({ title, description, children }) {
         main: '#202045',
       },
       secondary: {
-        main: '#208080',
+        main: '#979c11',
       },
     },
   });
@@ -82,7 +82,6 @@ export default function Layout({ title, description, children }) {
                 checked={darkMode}
                 onChange={darkModeChangeHandler}
               ></Switch>
-
               <NextLink href="/cart" passHref>
                 <Link>
                   <Typography component="span">
@@ -98,6 +97,10 @@ export default function Layout({ title, description, children }) {
                     )}
                   </Typography>
                 </Link>
+              </NextLink>
+              &nbsp;&nbsp;
+              <NextLink href="/login" passHref>
+                <Link>Login</Link>
               </NextLink>
             </Box>
           </Toolbar>

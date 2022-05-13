@@ -23,7 +23,8 @@
     "next-connect": "^0.12.2",
     "notistack": "^2.0.4",
     "react": "17.0.0",
-    "react-dom": "17.0.0"
+    "react-dom": "17.0.0",
+    "react-hook-form": "^7.31.1"
   },
   "devDependencies": {
     "eslint": "8.14.0",
