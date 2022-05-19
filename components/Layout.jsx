@@ -20,7 +20,7 @@ import { Store } from '../utils/Store';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
-  const { darkMode, cart } = state;
+  const { darkMode, cart, userInfo } = state;
 
   const theme = createTheme({
     components: {
@@ -99,9 +99,15 @@ export default function Layout({ title, description, children }) {
                 </Link>
               </NextLink>
               &nbsp;&nbsp;
-              <NextLink href="/login" passHref>
-                <Link>Login</Link>
-              </NextLink>
+              {userInfo ? (
+                <NextLink href="/profile" passHref>
+                  <Link>{userInfo.name}</Link>
+                </NextLink>
+              ) : (
+                <NextLink href="/login" passHref>
+                  <Link>Login</Link>
+                </NextLink>
+              )}
             </Box>
           </Toolbar>
         </AppBar>
