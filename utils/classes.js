@@ -25,6 +25,10 @@ const classes = {
     left: '10%',
     transform: 'translateX(-10%)',
   },
+  navbarButton: {
+    color: '#ffffff',
+    textTransform: 'initial',
+  },
   main: {
     marginTop: 2,
     minHeight: '80vh',

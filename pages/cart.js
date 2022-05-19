@@ -39,7 +39,7 @@ function CartScreen() {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleCheckout = async () => {
-    router.push('/check');
+    router.push('/shipping');
   };
 
   const updateCartHandler = async (item, quantity) => {
