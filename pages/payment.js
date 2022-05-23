@@ -71,8 +71,8 @@ export default function PaymentScreen() {
                   control={<Radio />}
                 ></FormControlLabel>
                 <FormControlLabel
-                  label="Cash"
-                  value="Cash"
+                  label="Cash On Delivery"
+                  value="Cash On Delivery"
                   control={<Radio />}
                 ></FormControlLabel>
               </RadioGroup>
